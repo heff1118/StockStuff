@@ -12,6 +12,9 @@ public class PersonStocksDAO implements DatabasesAccessObject {
     private int id;
     private PersonDAO personDAO;
 
+    /**
+     * @return id
+     */
     @Id
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
     public int getId() {
@@ -22,6 +25,10 @@ public class PersonStocksDAO implements DatabasesAccessObject {
         this.id = id;
     }
 
+    /**
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -34,17 +41,26 @@ public class PersonStocksDAO implements DatabasesAccessObject {
         return true;
     }
 
+    /**
+     * @return id
+     */
     @Override
     public int hashCode() {
         return id;
     }
 
+    /**
+     * @return PersonDAO
+     */
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "id", nullable = false)
     public PersonDAO getPersonDAO() {
         return personDAO;
     }
 
+    /**
+     * @param personByPersonId
+     */
     public void setPersonDAO(PersonDAO personByPersonId) {
         this.personDAO = personByPersonId;
     }

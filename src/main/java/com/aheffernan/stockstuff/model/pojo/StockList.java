@@ -10,6 +10,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
+/**
+ *
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
         "stock"
@@ -19,10 +22,16 @@ public class StockList implements StockInterface {
 
     private List<Stock> stock;
 
+    /**
+     ** @return List<Stock>
+     */
     public List<Stock> getStocks() {
         return stock;
     }
 
+    /**
+     * @param stock
+     */
     public void setStocks(List<Stock> stock) {
         this.stock = stock;
     }

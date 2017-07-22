@@ -30,6 +30,8 @@ public class StockSearchServlet extends HttpServlet {
     private static final String monthUntil = "monthUntil";
     private static final String yearUntil = "yearUntil";
     private static final String dayUntil = "dayUntil";
+    private static final String databaseSelected = "dataBase";
+
     private static final DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy MMM dd");
 
     private String inputSymbol;
@@ -40,7 +42,7 @@ public class StockSearchServlet extends HttpServlet {
     private String inputYearUntil;
     private String inputDayUntil;
 
-    private StockService stockService = ServiceFactory.getStockService();
+    private StockService stockService;
 
     /**
      * @param request
@@ -52,10 +54,6 @@ public class StockSearchServlet extends HttpServlet {
             throws IOException, ServletException {
 
         getParametersFromRequest(request);
-
-        System.out.println("Month " + inputMonthFrom + " Year " + inputYearFrom + " Day " + inputDayFrom);
-        //TODO Delete these
-        System.out.println("Month " + inputMonthUntil + " Year " + inputYearUntil + " Day " + inputDayUntil);
 
         LocalDateTime fromDate = LocalDateTime.parse(inputYearFrom + " " + inputMonthFrom + " " + inputDayFrom, formatter);
         LocalDateTime untilDate = LocalDateTime.parse(inputYearUntil + " " + inputMonthUntil + " " + inputDayUntil, formatter);
@@ -80,6 +78,10 @@ public class StockSearchServlet extends HttpServlet {
         redirect(request,response);
     }
 
+    /**
+     * @param request
+     * @param response
+     */
     public void redirect(HttpServletRequest request, HttpServletResponse response) {
         try {
             //Redirect to the Results page
@@ -91,6 +93,9 @@ public class StockSearchServlet extends HttpServlet {
         }
     }
 
+    /**
+     * @param request
+     */
     private void getParametersFromRequest(HttpServletRequest request) {
         inputSymbol = request.getParameter(symbol);
         inputMonthFrom = request.getParameter(monthFrom);
@@ -99,5 +104,19 @@ public class StockSearchServlet extends HttpServlet {
         inputMonthUntil = request.getParameter(monthUntil);
         inputYearUntil = request.getParameter(yearUntil);
         inputDayUntil = request.getParameter(dayUntil);
+        String databaseBackendSelected = request.getParameter(databaseSelected);
+        selectCorrectStockService(databaseBackendSelected);
+    }
+
+    /**
+     * @param databaseBackendSelected set the selected database
+     */
+    private void selectCorrectStockService(String databaseBackendSelected) {
+        if(databaseBackendSelected != null ){ //default to yahoo if nothing is selected
+            stockService = ServiceFactory.getStockService(false);
+        } else {
+            stockService = ServiceFactory.getStockService(true);
+        }
+
     }
 }

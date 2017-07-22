@@ -20,7 +20,7 @@ public class YahooAPIStockServiceTest {
     @Test
     public void getStockSyml(){
         try {
-            StockQuote googleStock = ServiceFactory.getStockService().getQuote("GOOG");
+            StockQuote googleStock = ServiceFactory.getStockService(true).getQuote("GOOG");
             assertEquals("Symbol returned is correct", "GOOG", googleStock.getSymbol());
 
         } catch (StockServiceException e) {
@@ -31,7 +31,7 @@ public class YahooAPIStockServiceTest {
     @Test
     public void getStockPrice(){
         try {
-            StockQuote googleStock = ServiceFactory.getStockService().getQuote("GOOG");
+            StockQuote googleStock = ServiceFactory.getStockService(true).getQuote("GOOG");
             assertNotNull("Symbol returned is correct", googleStock.getPrice());
 
         } catch (StockServiceException e) {
@@ -42,7 +42,7 @@ public class YahooAPIStockServiceTest {
     @Test
     public void getIntervalStock() {
         try {
-            List<StockQuote> historicStocks = ServiceFactory.getStockService().getQuote("GOOG", LocalDateTime.now(), LocalDateTime.now().minusDays(7), Interval.DAY);
+            List<StockQuote> historicStocks = ServiceFactory.getStockService(true).getQuote("GOOG", LocalDateTime.now(), LocalDateTime.now().minusDays(7), Interval.DAY);
             assertEquals("historic date returns 5 days of day", historicStocks.size(), 5); //Weekends dont return results
         } catch (StockServiceException e) {
             e.printStackTrace();

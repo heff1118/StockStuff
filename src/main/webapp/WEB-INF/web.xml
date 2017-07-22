@@ -10,22 +10,9 @@
         <servlet-class>com.aheffernan.stockstuff.servlet.StockSearchServlet</servlet-class>
     </servlet>
 
-<!-- TODO: delete this-->
-    <!--<servlet>-->
-        <!--<servlet-name>ServletForwardingExample</servlet-name>-->
-        <!--<servlet-class>com.origami.teach.servlet.MoodSurvey</servlet-class>-->
-    <!--</servlet>-->
-
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>ServletForwardingExample</servlet-name>-->
-        <!--<url-pattern>/servlets/ServletForwardingExample/*</url-pattern>-->
-    <!--</servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>StockSearchServlet</servlet-name>
         <url-pattern>/servlets/StockSearchServlet/*</url-pattern>
     </servlet-mapping>
-
-
-
 
 </web-app>

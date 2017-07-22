@@ -25,7 +25,6 @@ public class YahooAPIStockService implements StockService {
      */
     @Override
     public StockQuote getQuote(String symbol) throws StockServiceException {
-        System.out.println("LOOKING FOR " + symbol);
 
         try {
             Stock stock = YahooFinance.get(symbol);
@@ -48,7 +47,6 @@ public class YahooAPIStockService implements StockService {
      */
     @Override
     public List<StockQuote> getQuote(String symbol, LocalDateTime from, LocalDateTime until, Interval interval) throws StockServiceException {
-        System.out.println("LOOKING FOR " + symbol);
         try {
             //Convert Joda time to Calendar for YahooAPI
             Calendar fromDate = convertLocalDateTimetoCalendar(Date.from(from.toDate().toInstant()));
@@ -68,12 +66,20 @@ public class YahooAPIStockService implements StockService {
         }
     }
 
+    /**
+     * @param date
+     * @return Calendar
+     */
     private Calendar convertLocalDateTimetoCalendar(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return calendar;
     }
 
+    /**
+     * @param listOfHistoricalQuote
+     * @return List<StockQuote>
+     */
     private List<StockQuote> mapListStockToStockQoute(List<HistoricalQuote> listOfHistoricalQuote) {
         List<StockQuote> stockQuotes = new ArrayList<>();
         listOfHistoricalQuote.stream().forEach(stock ->
@@ -82,6 +88,10 @@ public class YahooAPIStockService implements StockService {
         return stockQuotes;
     }
 
+    /**
+     * @param stock
+     * @return StockQuote
+     */
     private StockQuote mapStockToStockQoute(@NotNull Stock stock) {
         return new StockQuote(stock.getQuote().getPrice(), LocalDateTime.now(), stock.getSymbol());
     }

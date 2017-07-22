@@ -31,6 +31,9 @@ public class Stock implements StockInterface {
         this.price = price;
     }
 
+    /**
+     * @return
+     */
     public LocalDateTime getDate() {
         return date;
     }

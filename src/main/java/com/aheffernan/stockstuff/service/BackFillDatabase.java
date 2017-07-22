@@ -9,10 +9,13 @@ import java.io.*;
 
 public class BackFillDatabase {
 
+    /**
+     * ParseXML
+     */
     public static void parseXML(){
         try {
 
-            File file = new File("/Users/aheffernan/IdeaProjects/StockStuff/src/main/resources/stock_info.xml");
+            File file = new File("/resources/stock_info.xml");
 
             JAXBContext jaxbContext = JAXBContext.newInstance(StockList.class);
             System.out.println(file.toString());
@@ -25,6 +28,11 @@ public class BackFillDatabase {
         }
     }
 
+    /**
+     * @param file
+     * @return string
+     * @throws IOException
+     */
     private static String stringifyFile(File file) throws IOException {
 
         BufferedReader br = new BufferedReader(new FileReader(file));

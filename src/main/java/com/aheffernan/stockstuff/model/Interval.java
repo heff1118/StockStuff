@@ -12,7 +12,7 @@ public class Interval {
 
     /**
      * @param text
-     * @return
+     * @return IntervalEnum
      */
     public static IntervalEnum valueOf(String text) {
         text = text.toLowerCase();

@@ -16,26 +16,41 @@ public class QuoteDAO implements DatabasesAccessObject {
     private BigDecimal price;
     private StockSymbolDAO stockSymbolBySymbolId;
 
+    /**
+     * @return id
+     */
     @Id
     @Column(name = "id",  nullable = false, insertable = true, updatable = true)
     public int getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * @return time
+     */
     @Basic
     @Column(name = "time", nullable = false, insertable = true, updatable = true)
     public Timestamp getTime() {
         return time;
     }
 
+    /**
+     * @param time
+     */
     public void setTime(Timestamp time) {
         this.time = time;
     }
 
+    /**
+     * @return price
+     */
     @Basic
     @Digits(integer=5, fraction=2)
     @Column(name = "price", nullable = false, insertable = true, updatable = true, precision = 0)
@@ -43,10 +58,17 @@ public class QuoteDAO implements DatabasesAccessObject {
         return price;
     }
 
+    /**
+     * @param price
+     */
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
+    /**
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,6 +97,9 @@ public class QuoteDAO implements DatabasesAccessObject {
         return stockSymbolBySymbolId;
     }
 
+    /**
+     * @param stockSymbolBySymbolId
+     */
     public void setStockSymbolBySymbolId(StockSymbolDAO stockSymbolBySymbolId) {
         this.stockSymbolBySymbolId = stockSymbolBySymbolId;
     }

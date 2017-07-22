@@ -11,6 +11,9 @@ public class PersonDAO implements DatabasesAccessObject{
     private int id;
     private String userName;
 
+    /**
+     * @return userid
+     */
     @Id
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
     public int getId() {
@@ -21,6 +24,9 @@ public class PersonDAO implements DatabasesAccessObject{
         this.id = id;
     }
 
+    /**
+     * @return username
+     */
     @Basic
     @Column(name = "user_name", nullable = false, insertable = true, updatable = true, length = 256)
     public String getUserName() {
@@ -31,6 +37,10 @@ public class PersonDAO implements DatabasesAccessObject{
         this.userName = userName;
     }
 
+    /**
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,6 +55,9 @@ public class PersonDAO implements DatabasesAccessObject{
         return true;
     }
 
+    /**
+     * @return id
+     */
     @Override
     public int hashCode() {
         int result = id;

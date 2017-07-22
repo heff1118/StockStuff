@@ -11,22 +11,34 @@ public class StockSymbolDAO implements DatabasesAccessObject {
     private int id;
     private String symbol;
 
+    /**
+     * @return id
+     */
     @Id
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
     public int getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * @return symbol
+     */
     @Basic
     @Column(name = "symbol", nullable = false, insertable = true, updatable = true, length = 4)
     public String getSymbol() {
         return symbol;
     }
 
+    /**
+     * @param symbol
+     */
     public void setSymbol(String symbol) {
         this.symbol = symbol;
     }

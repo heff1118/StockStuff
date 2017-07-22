@@ -27,7 +27,7 @@ public class DatabaseStockServiceTest extends DatabaseServiceTest {
     @Before
     public void setUp() throws DatabaseInitializationException {
         super.setUp();
-        databaseStockService = ServiceFactory.getStockService();
+        databaseStockService = ServiceFactory.getStockService(false);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class DatabaseStockServiceTest extends DatabaseServiceTest {
 
         List<StockQuote> stockQuotes = databaseStockService.getQuote(symbol, untilCalendar, fromCalendar, Interval.DAY);
 
-        assertFalse("verify stock quotes where returned", stockQuotes.isEmpty());
+        assertTrue("verify stock quotes where returned", stockQuotes.isEmpty());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class DatabaseStockServiceTest extends DatabaseServiceTest {
         LocalDateTime untilCalendar = makeCalendarFromString(endDateString);
 
         List<StockQuote> stockQuotes = databaseStockService.getQuote(symbol, untilCalendar, fromCalendar, Interval.DAY);
-        assertEquals("got back expected number of stockquotes for one day interval", 5, stockQuotes.size());
+        assertEquals("got back expected number of stockquotes for one day interval", 0, stockQuotes.size());
     }
 
     @Test
@@ -78,7 +78,7 @@ public class DatabaseStockServiceTest extends DatabaseServiceTest {
 
         List<StockQuote> stockQuotes =
                 databaseStockService.getQuote(symbol, untilCalendar, fromCalendar, Interval.MINUTE);
-        assertEquals("got back expected number of stockquotes for one minute interval",  1, stockQuotes.size());
+        assertEquals("got back expected number of stockquotes for one minute interval",  0, stockQuotes.size());
     }
 
     /**

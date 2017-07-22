@@ -10,12 +10,17 @@ public class ServiceFactory {
      */
     private ServiceFactory() {}
 
+
     /**
-     *
+     * @param defaultService
      * @return get a <CODE>StockService</CODE> instance
      */
-    public static StockService getStockService() {
-        return new YahooAPIStockService();
+    public static StockService getStockService(boolean defaultService) {
+        if(defaultService){
+            return new YahooAPIStockService();
+        } else {
+            return new DatabaseStockService();
+        }
     }
 
     /**
